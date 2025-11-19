@@ -1,0 +1,30 @@
+// import variables 
+@import "./variables";
+@import "./generic";
+@import "./mixins";
+@import "./main-btn";
+@import "./form";
+@import "./popup";
+@import "./flex_buttons";
+
+
+
+.container{
+  max-width: clamp(300px, 100%, 1800px);
+  margin: 0 auto;
+  padding-inline: 20px;
+  transition: 1s;
+  display: flex;
+  &.page_active{
+    // margin-inline-start: 275px !important;
+    justify-content: flex-end;
+    transition: 1s;
+    @media (max-width : 767px) {
+      transition: 1s;
+      margin-inline-start: 0 !important;
+    }
+  }
+}
+
+
+

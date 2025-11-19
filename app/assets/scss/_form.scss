@@ -1,0 +1,99 @@
+form,
+.form{
+  h3{
+    font-size: 14px;
+    font-weight: 400;
+    + hr{
+      margin-block: 4px 10px;
+    }
+  }
+
+
+  .inputs{
+    @include displayFlex();
+    .input-wrap{
+      flex-grow: 1;
+    }
+  }
+
+  .input-wrap{
+    &:not(:last-of-type){
+      margin-bottom: 8px;
+    }
+    label{
+      font-size: 14px;
+      font-weight: 400;
+      span{
+        color: $secColor;
+        font-size: 12px;
+      }
+    }
+    .input{
+      @include displayFlex($gap : 4px);
+      padding-bottom: 5px;
+      border: 0.5px solid #E6E6E6;
+      border-radius: 8px;
+      padding: 2px 8px;
+      position: relative;
+      i.pi{
+        color: $secColor;
+        &.pi-lock,
+        &.pi-lock-open{
+          cursor: pointer;
+        }
+      }
+      input,
+      select{
+        font-size: 12px;
+        font-weight: 300;
+        color: $mainColor;
+        padding-inline-start: 1px;
+      }
+      .country_code{
+        @include displayFlex($gap : 5px);
+        font-size: 14px;
+        font-weight: 300;
+        color: $secColor;
+        .image{
+          margin-bottom: 0;
+          width: 30px;
+          img{
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+  .main-btn{
+    + p {
+      font-size: 14px;
+      font-weight: 400;
+      color: $secColor;
+      text-align: center;
+      margin-top: 20px;
+      a{
+        color: $mainColor;
+        font-weight: 900;
+        margin-inline-start: 5px;
+      }
+    }
+  }
+}
+
+
+.auth_page{
+  .form,
+  form{
+    .input-wrap{
+      &:last-of-type{
+        .input{
+          border: none;
+          justify-content: flex-start;
+          input{
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+}

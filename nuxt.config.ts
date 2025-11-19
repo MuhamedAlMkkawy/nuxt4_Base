@@ -1,0 +1,112 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+import Aura from '@primeuix/themes/aura';
+
+
+
+export default defineNuxtConfig({
+  compatibilityDate: '2025-07-15',
+  devtools: { enabled: true },
+
+  
+  runtimeConfig: {
+    public: {
+      // apiBase: "https://mazadaty-app.com/api/",
+      // secretKey : "9e810ce4d7b9e83d7aaf208b3ecfd0488d6a1e5c67a6a72f384a1d3bcb40c012"
+    },
+  },
+
+  app: {
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+    head: {
+      title:'Website Title',
+      htmlAttrs: { lang: 'ar' },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Website Title' },
+      ],
+      // link: [{ rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }],
+    },
+  },
+
+  modules: [ 
+    '@primevue/nuxt-module' , 
+    '@nuxtjs/i18n', 
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+  ],
+  
+  imports: {
+    dirs: ['stores' , 'composables' , 'helpers'], 
+  },
+
+
+  primevue: {
+    autoImport : true ,
+    options: {
+      // unstyled: true,
+      zIndex: {
+        modal: 3000
+      },
+      ripple: true,
+      theme: {
+        preset: Aura,
+        options: {
+          prefix: 'p',
+          darkModeSelector: '.dark',
+          cssLayer: false
+        }
+      }
+    }
+  },
+
+  i18n: {
+    detectBrowserLanguage: false ,
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en.json',
+        name: 'English',
+        dir: 'ltr',
+      },
+      {
+        code: 'ar',
+        iso: 'ar-SA',
+        file: 'ar.json',
+        name: 'العربية',
+        dir: 'rtl',
+      },
+    ],
+    langDir: '../app/locales/',
+    strategy: 'prefix_except_default',
+    lazy: true,
+    defaultLocale: 'en',
+    vueI18n: './i18n.config.ts',
+  },
+
+  css: [
+    "@/assets/css/style.css",
+    "primeicons/primeicons.css"
+    // 'primevue/resources/themes/aura-light-green/theme.css'
+  ],
+
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+            @use "@/assets/scss/_variables.scss" as *;
+            @use "@/assets/scss/_mixins.scss" as *;
+          `,
+        },
+      },
+    },
+  },
+
+})
