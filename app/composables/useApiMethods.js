@@ -54,17 +54,6 @@ export function useApiMethods() {
   }
 
 
-  // HANDLE THE ERROR FROM RESPONCE 
-  const handleError = (error) => {
-    if (error) {
-      globalStore.switchLoading(false)
-      handleToastMsg('error' , error?.response?.data?.message || error?.message || 'There is an error please try again later!!');
-    }
-  }
-
-
-
-
   // submit form function
   const submitResult = ref(null)
   const submitMethod = async (endPoint, authed , payload , method  , nextRoute , refetchApi) => {

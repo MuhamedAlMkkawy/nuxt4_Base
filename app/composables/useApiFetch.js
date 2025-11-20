@@ -1,4 +1,5 @@
 // composables/useApiFetch.js
+import { useToastMsg } from "./useToastMsg";
 
 // Common options configuration function
 const createFetchOptions = (authed, options = {}) => {
@@ -43,11 +44,18 @@ const fetchData = async (url, authed = false, options = {}, method = "GET") => {
 };
 
 // For async GET requests
-export const useApiAsyncData = (key, url, authed = false, options = {}) => {
+export const useApiAsyncData = (key, url, authed = false, showToastMsg = false , options = {}) => {
+  const { 
+    showErrorToast, 
+    showSuccessToast,
+  } = useToastMsg();
+
+
   return useAsyncData(
     key,
     async () => {
-      const result = await fetchData(url, authed, options, 'GET');
+      const result = await fetchData(url, authed , options, 'GET');
+
       if (result.error) {
         // handle the error first
         const error = result.error;
@@ -58,11 +66,15 @@ export const useApiAsyncData = (key, url, authed = false, options = {}) => {
         } else {
           // show error message
           useGlobalStore().switchLoading(false);
-          handleToastMsg('error', error.message);
+          showErrorToast(error?.message || error || 'There is an error please try again later!!');
         }
         return result;
       }
+
       // if there is no error, continue the process
+      if(showToastMsg){
+        showSuccessToast('Data fetched successfully');
+      }
       return result;
     },
     {
