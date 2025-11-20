@@ -32,16 +32,39 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [ 
-    '@primevue/nuxt-module' , 
-    '@nuxtjs/i18n', 
+  modules: [
+    '@primevue/nuxt-module',
+    '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    '@vee-validate/nuxt',
+    'nuxt-yup',
   ],
   
+  veeValidate: {
+    autoImports: true,
+    componentNames: {
+      Form: 'VeeForm',
+      Field: 'VeeField',
+      ErrorMessage: 'VeeErrorMessage'
+    }
+  },
+
+
   imports: {
-    dirs: ['stores' , 'composables' , 'helpers'], 
+    dirs: [
+      'stores' , 
+      'composables' , 
+      'helpers', 
+      'schemas' 
+    ], 
+    presets: [
+      {
+        from: 'vee-validate',
+        imports: ['Field', 'Form', 'ErrorMessage', 'useField', 'useForm']
+      }
+    ]
   },
 
 
@@ -84,7 +107,7 @@ export default defineNuxtConfig({
     ],
     langDir: '../app/locales/',
     strategy: 'prefix_except_default',
-    lazy: true,
+    // lazy: true,
     defaultLocale: 'en',
     vueI18n: './i18n.config.ts',
   },
