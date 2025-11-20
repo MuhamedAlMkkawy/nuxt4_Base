@@ -115,6 +115,3 @@ Includes:
 -   `primeicons/primeicons.css`
 
 ------------------------------------------------------------------------
-
-This README summarizes the core setup and architecture of this Nuxt 4
-starter base.
