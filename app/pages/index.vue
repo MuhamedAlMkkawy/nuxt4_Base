@@ -24,6 +24,7 @@
 
 <script setup>
   import { globalSchema } from '@/schemas/global'
+  import { useApiAsyncData } from '@/composables/useApiFetch'
 
 
   const { data } = useApiAsyncData('products', 'https://dummyjson.com/products' , false , true);
