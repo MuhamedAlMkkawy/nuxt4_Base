@@ -1,0 +1,30 @@
+# Enable Rewrite Engine
+RewriteEngine On
+RewriteBase /
+
+####################################
+# 1. Serve existing files or directories
+####################################
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+####################################
+# 2. API requests to Node.js
+####################################
+RewriteCond %{REQUEST_URI} ^/api
+RewriteRule ^api/(.*)$ http://127.0.0.1:3000/api/$1 [P,L]
+
+####################################
+# 3. SPA Fallback for Nuxt
+####################################
+# Anything else (Nuxt frontend routes) goes to index.html
+# Important: must exclude /api
+RewriteCond %{REQUEST_URI} !^/api
+RewriteRule ^ /index.html [L]
+
+# ####################################
+# # 4. Optional: Force HTTPS
+# ####################################
+# # RewriteCond %{HTTPS} off
+# # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
