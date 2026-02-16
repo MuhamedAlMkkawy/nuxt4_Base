@@ -1,4 +1,5 @@
 {
-  "title" : "Ar Title",
-  "description" : "Ar Description"
+  "empty_component" : {
+    "text" : "لا يوجد محتوي"
+  }
 }

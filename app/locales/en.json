@@ -1,4 +1,5 @@
 {
-  "title" : "En Title",
-  "description" : "En Description"
+  "empty_component": {
+    "text": "No content Found!"
+  }
 }
