@@ -42,10 +42,9 @@ YOU NEED TO PUT VALUE IN MIXIN WITH PX  >>>  EXAMPLE
 
 
 
-
-@mixin circle($value: 150px) {
+@mixin circle($value: 150px , $radius : 50%) {
   width: $value;
   height: $value;
-  border-radius: 50%;
+  border-radius: $radius;
   overflow: hidden;
 }

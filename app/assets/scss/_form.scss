@@ -1,5 +1,4 @@
-form,
-.form{
+form{
   h3{
     font-size: 14px;
     font-weight: 400;
@@ -75,24 +74,6 @@ form,
         color: $mainColor;
         font-weight: 900;
         margin-inline-start: 5px;
-      }
-    }
-  }
-}
-
-
-.auth_page{
-  .form,
-  form{
-    .input-wrap{
-      &:last-of-type{
-        .input{
-          border: none;
-          justify-content: flex-start;
-          input{
-            width: 20px;
-          }
-        }
       }
     }
   }
