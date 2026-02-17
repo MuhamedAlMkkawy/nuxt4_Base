@@ -1,5 +1,9 @@
 {
   "empty_component": {
     "text": "No content Found!"
+  },
+    "error_page": {
+    "title": "Page Not Found",
+    "go_home": "Go To Home Page"
   }
 }
