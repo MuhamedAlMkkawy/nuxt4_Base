@@ -128,11 +128,9 @@ export default defineNuxtConfig({
   css: [
     "@/assets/css/tailwind.css",
     "@/assets/scss/_generic.scss",
-    "@/assets/scss/_main-btn.scss",
     "@/assets/scss/_form.scss",
+    "@/assets/scss/_main-btn.scss",
     "@/assets/scss/_popup.scss",
-    "@/assets/scss/_flex_buttons.scss",
-    "@/assets/scss/_empty.scss",
     "@/assets/scss/style.scss",
     "primeicons/primeicons.css",
     // 'primevue/resources/themes/aura-light-green/theme.css'

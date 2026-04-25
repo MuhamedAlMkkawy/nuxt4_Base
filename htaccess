@@ -21,7 +21,7 @@ RewriteRule ^api/(.*)$ http://127.0.0.1:3000/api/$1 [P,L]
 # Anything else (Nuxt frontend routes) goes to index.html
 # Important: must exclude /api
 RewriteCond %{REQUEST_URI} !^/api
-RewriteRule ^ /index.html [L]
+RewriteRule ^ /200.html [L]
 
 # ####################################
 # # 4. Optional: Force HTTPS

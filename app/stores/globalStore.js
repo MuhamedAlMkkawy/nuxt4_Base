@@ -8,7 +8,7 @@ export const useGlobalStore = defineStore('globalStore' , () => {
   };
 
   // define language
-  const lang = ref(useCookie('language')?.value || 'ar');
+  const lang = ref(useCookie('language')?.value || 'en');
   const setLang = (newLang) => {
     lang.value = newLang;
     useCookie('language').value = newLang; // Store the language in a cookie

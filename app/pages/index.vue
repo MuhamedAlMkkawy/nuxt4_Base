@@ -20,6 +20,7 @@
       </div>
     </div>
   </div>
+  <Button label="text" />
 </template>
 
 <script setup>

@@ -125,8 +125,8 @@ onBeforeUnmount(() => {
       height: 120%;
       background: radial-gradient(
         circle at center,
-        #fff 0%,
-        darken(#fff, 15%) 70%,
+        #ffffff 0%,
+        #d9d9d9 70%,
         #1a1a1a 100%
       );
       border-radius: 50%;

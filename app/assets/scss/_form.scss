@@ -1,76 +1,99 @@
-form{
-  h3{
+form {
+  h3 {
     font-size: 14px;
     font-weight: 400;
-    + hr{
+
+    + hr {
       margin-block: 4px 10px;
     }
   }
 
+  .inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 20px; // same default from your mixin
 
-  .inputs{
-    @include displayFlex();
-    .input-wrap{
+    .input-wrap {
       flex-grow: 1;
     }
   }
 
-  .input-wrap{
-    &:not(:last-of-type){
+  .input-wrap {
+    &:not(:last-of-type) {
       margin-bottom: 8px;
     }
-    label{
+
+    label {
       font-size: 14px;
       font-weight: 400;
-      span{
+
+      span {
         color: $secColor;
         font-size: 12px;
       }
     }
-    .input{
-      @include displayFlex($gap : 4px);
+
+    .input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
       padding-bottom: 5px;
       border: 0.5px solid #E6E6E6;
       border-radius: 8px;
       padding: 2px 8px;
       position: relative;
-      i.pi{
+
+      i.pi {
         color: $secColor;
+
         &.pi-lock,
-        &.pi-lock-open{
+        &.pi-lock-open {
           cursor: pointer;
         }
       }
+
       input,
-      select{
+      select {
         font-size: 12px;
         font-weight: 300;
         color: $mainColor;
         padding-inline-start: 1px;
       }
-      .country_code{
-        @include displayFlex($gap : 5px);
+
+      .country_code {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+
         font-size: 14px;
         font-weight: 300;
         color: $secColor;
-        .image{
+
+        .image {
           margin-bottom: 0;
           width: 30px;
-          img{
+
+          img {
             object-fit: contain;
           }
         }
       }
     }
   }
-  .main-btn{
+
+  .main-btn {
     + p {
       font-size: 14px;
       font-weight: 400;
       color: $secColor;
       text-align: center;
       margin-top: 20px;
-      a{
+
+      a {
         color: $mainColor;
         font-weight: 900;
         margin-inline-start: 5px;

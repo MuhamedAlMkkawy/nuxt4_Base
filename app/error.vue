@@ -1,64 +1,40 @@
 <template>
-  <div class="error_page">
-    <div class="image">
-      <img src="/assets/images/logo.svg" alt="logo image" loading="lazy" />
+  <div class="flex flex-col items-center justify-center min-h-screen bg-[var(--secColor)] relative text-center px-4">
+    
+    <!-- Logo -->
+    <div class="w-[300px] h-[200px] mx-auto sm:w-[200px]">
+      <!-- <img
+        src="~/assets/images/logo.svg"
+        alt="logo image"
+        loading="lazy"
+        class="w-full h-full object-contain"
+      /> -->
+      Logo
     </div>
 
-    <h1>
+    <!-- 404 -->
+    <h1 class="flex items-center gap-5 text-[150px] text-[var(--mainColor)] leading-none">
       4
       <NotFoundEyes />
       4
     </h1>
 
-    <h3>
+    <!-- Title -->
+    <h3 class="text-[clamp(30px,5vw,60px)] mb-2">
       {{ $t("error_page.title") }}
     </h3>
 
-    <NuxtLink :to="localeRoute('/')" class="main-btn">
-      {{ $t("error_page.go_home") }}
-    </NuxtLink>
+    <!-- Button -->
+    <NuxtLink
+    :to="localeRoute('/')"
+    class="main-btn max-w-[500px]"
+  >
+    {{ $t("error_page.go_home") }}
+  </NuxtLink>
+    
   </div>
 </template>
 
 <script setup>
-// define locale route
 const localeRoute = useLocaleRoute();
 </script>
-
-<style lang="scss">
-.error_page {
-  @include displayFlex($direction: column, $gap: 0);
-  height: 100vh;
-  background: $secColor;
-  position: relative;
-  .image {
-    width: 300px;
-    height: 200px;
-    margin: 0 auto;
-    img {
-      object-fit: contain;
-    }
-    @media (max-width: 560px) {
-      width: 200px;
-    }
-  }
-
-  h1 {
-    font-size: 150px;
-    margin-bottom: 0px;
-    color: $mainColor;
-    @include displayFlex($gap: 20px);
-    span {
-      color: $secColor;
-    }
-  }
-
-  h3 {
-    font-size: clamp(30px, 100%, 300px);
-    margin-bottom: 10px;
-  }
-  a {
-    max-width: 500px;
-  }
-}
-</style>

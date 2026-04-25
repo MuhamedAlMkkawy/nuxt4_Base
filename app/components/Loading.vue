@@ -1,6 +1,13 @@
 <template>
-  <div class="card loading-card flex justify-center">
-    <img src="/assets/images/logo.png" alt="image" loading="lazy">
+  <div
+    class="fixed inset-0 z-[99999] flex items-center justify-center bg-white/70 backdrop-blur-[10px]"
+  >
+    <img
+      src="/assets/images/logo.png"
+      alt="image"
+      loading="lazy"
+      class="w-[200px] h-[200px] object-contain animate-custom-spin"
+    />
   </div>
 </template>
 
@@ -9,26 +16,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .loading-card {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(#fff, 0.7);
-    backdrop-filter: blur(10px);
-    z-index: 99999 !important;
-    img{
-      width: 200px;
-      height: 200px;
-      object-fit: contain;
-      animation: spin 10s linear infinite alternate-reverse ;
-    }
-  }
   @keyframes spin {
     0% {
       transform: rotate(0deg) scale(0.8);
