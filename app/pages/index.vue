@@ -14,21 +14,26 @@
     />
   </VeeForm>
     <!-- <h1>{{$t('title')}} => Products</h1> -->
-    <div v-if="data">
-      <div v-for="item in data?.data?.products" :key="item.id">
+    <div v-if="getResult">
+      <div v-for="item in getResult?.products" :key="item.id">
         {{ item?.title }}
       </div>
     </div>
+    <Button label="text" class="w-[150px]" />
   </div>
-  <Button label="text" />
 </template>
 
 <script setup>
   import { globalSchema } from '@/schemas/global'
-  import { useApiAsyncData } from '@/composables/useApiFetch'
 
+  const {
+    getMethod ,
+    getResult
+  } = useApiMethods()
 
-  const { data } = useApiAsyncData('products', 'https://dummyjson.com/products' , false , true);
+  onMounted(async ()=> {
+    await getMethod('https://dummyjson.com/products' , false , true);
+  })
 </script>
 
 <style lang="scss" scoped>

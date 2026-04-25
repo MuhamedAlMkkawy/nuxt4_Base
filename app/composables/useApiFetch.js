@@ -1,90 +1,60 @@
-// composables/useApiFetch.js
-import { useToastMsg } from "./useToastMsg";
-
 // Common options configuration function
-const createFetchOptions = (authed, options = {}) => {
-  const token = useCookie('auth')?.value?.user?.token || useCookie('token')?.value;
+const createFetchOptions = (authed , options = {}) => {
+  const token = useAuthStore()?.userData?.token || JSON.parse(window.sessionStorage.getItem('authStore'))?.token; // You can fetch the actual token from auth storage
   const lang = useGlobalStore().lang;
   const config = useRuntimeConfig();
   const baseURL = options.baseURL || config.public.apiBase;
+  const secretKey = config.public.secretKey;
+
 
   const headers = {
-    ...(authed ? { Authorization: `Bearer ${token}` } : {}),
+    ...(authed ? { authorization: `Bearer ${token}` } : {}),
     lang: lang,
+    secretKey: secretKey,
     ...options.headers,
   };
 
   return {
     baseURL,
     headers,
-    responseType: "json",
+    response_type: "json",
     ...options,
   };
 };
 
-// Unified fetch function using $fetch
-const fetchData = async (url, authed = false, options = {}, method = "GET") => {
+
+// For data fetching with useFetch
+export const useApiFetch = (url, authed ,options = {}) => {
+  return useFetch(url, {
+    params: options.params || {}, // Set default params if none provided
+    ...createFetchOptions(authed , options),
+    method: "GET",
+  });
+};
+
+// Unified fetch function
+const fetchData = async (url , authed , options = {}, method) => {
   try {
     const response = await $fetch(url, {
-      ...createFetchOptions(authed, options),
+      ...createFetchOptions(authed , options),
       method,
-      body: options.body || undefined,
+      body: options.body || undefined, // Ensure body is included if it exists
     });
+
+    // Directly return the response
     return { data: response, error: null };
   } catch (error) {
-    // $fetch throws an object with `data` and `status`
-    return {
-      data: null,
-      error: {
-        message: error?.data?.message || error?.message || 'Unknown error',
-        status: error?.status || null,
-      },
-    };
+    console.error(`Error fetching data from ${url}:`, error);
+    return { data: null, error };
   }
 };
 
-// For async GET requests
-export const useApiAsyncData = (key, url, authed = false, showToastMsg = false , options = {}) => {
-  const { 
-    showErrorToast, 
-    showSuccessToast,
-  } = useToastMsg();
-
-
-  return useAsyncData(
-    key,
-    async () => {
-      const result = await fetchData(url, authed , options, 'GET');
-
-      if (result.error) {
-        // handle the error first
-        const error = result.error;
-        if (error.status === 401) {
-          // handle unauthorized error
-          useGlobalStore().switchLoading(false);
-          handleNextRoute('/auth/login');
-        } else {
-          // show error message
-          useGlobalStore().switchLoading(false);
-          showErrorToast(error?.message || error || 'There is an error please try again later!!');
-        }
-        return result;
-      }
-
-      // if there is no error, continue the process
-      if(showToastMsg){
-        showSuccessToast('Data fetched successfully');
-      }
-      return result;
-    },
-    {
-      // Make pending reactive for loading handling
-      ...options,
-    }
-  );
+// For data fetching with $fetch
+export const fetchApiData = (url, authed ,options = {}) => {
+  return fetchData(url, authed ,options, "GET"); // Call the unified fetch with GET method
 };
 
-// For POST / PUT / DELETE / form submissions
-export const submitApiForm = async (url, authed = false, formData = {}, method = "POST", options = {}) => {
-  return await fetchData(url, authed, { ...options, body: formData }, method);
+// For form submission or other requests with $fetch
+export const submitApiForm = (url, authed , formData, method = "POST", options = {}) => {
+  return fetchData(url, authed ,{ ...options, body: formData }, method); // Include formData and dynamic method in options
 };
