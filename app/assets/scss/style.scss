@@ -1,30 +1,41 @@
-// import variables 
-// @import "./variables";
-// @import "./generic";
-// @import "./mixins";
-// @import "./main-btn";
-// @import "./form";
-// @import "./popup";
-// @import "./flex_buttons";
-
-
-
-.container{
-  max-width: clamp(300px, 100%, 1800px);
-  margin: 0 auto;
-  padding-inline: 20px;
-  transition: 1s;
-  display: flex;
-  &.page_active{
-    // margin-inline-start: 275px !important;
-    justify-content: flex-end;
-    transition: 1s;
-    @media (max-width : 767px) {
-      transition: 1s;
-      margin-inline-start: 0 !important;
-    }
-  }
+.page {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: clamp(14px , 2.5vw , 20px);
 }
 
+// /* sm */
+// @media (min-width: 576px) {
+//   .page {
+//     max-width: 540px;
+//     padding-inline: 20px;
+//   }
+// }
 
+// /* md */
+// @media (min-width: 768px) {
+//   .page {
+//     max-width: 720px;
+//   }
+// }
 
+// /* lg */
+// @media (min-width: 992px) {
+//   .page {
+//     max-width: 960px;
+//   }
+// }
+
+// /* xl */
+// @media (min-width: 1200px) {
+//   .page {
+//     max-width: 1140px;
+//   }
+// }
+
+// /* xxl */
+// @media (min-width: 1400px) {
+//   .page {
+//     max-width: 1320px;
+//   }
+// }

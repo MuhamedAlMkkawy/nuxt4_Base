@@ -126,7 +126,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    "@/assets/css/tailwind.css",
+    "@/assets/scss/tailwind.css",
     "@/assets/scss/_generic.scss",
     "@/assets/scss/_form.scss",
     "@/assets/scss/_main-btn.scss",
